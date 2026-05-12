@@ -1,0 +1,94 @@
+开始并行矩阵乘法性能测试...
+=====================================
+测试矩阵规模: 128 x 128 x 128
+--> 调度策略: static
+Size: 128x128x128 | Threads: 1 | Time: 0.00255034 s
+Size: 128x128x128 | Threads: 2 | Time: 0.00159584 s
+Size: 128x128x128 | Threads: 4 | Time: 0.00108804 s
+Size: 128x128x128 | Threads: 8 | Time: 0.000777133 s
+Size: 128x128x128 | Threads: 16 | Time: 0.0698216 s
+-------------------------------------
+--> 调度策略: dynamic
+Size: 128x128x128 | Threads: 1 | Time: 0.00253276 s
+Size: 128x128x128 | Threads: 2 | Time: 0.00141354 s
+Size: 128x128x128 | Threads: 4 | Time: 0.000942759 s
+Size: 128x128x128 | Threads: 8 | Time: 0.000609038 s
+Size: 128x128x128 | Threads: 16 | Time: 0.0797875 s
+-------------------------------------
+--> 调度策略: auto
+Size: 128x128x128 | Threads: 1 | Time: 0.00254193 s
+Size: 128x128x128 | Threads: 2 | Time: 0.00156623 s
+Size: 128x128x128 | Threads: 4 | Time: 0.000833927 s
+Size: 128x128x128 | Threads: 8 | Time: 0.000680236 s
+Size: 128x128x128 | Threads: 16 | Time: 0.0944557 s
+-------------------------------------
+=====================================
+测试矩阵规模: 512 x 512 x 512
+--> 调度策略: static
+Size: 512x512x512 | Threads: 1 | Time: 0.474462 s
+Size: 512x512x512 | Threads: 2 | Time: 0.304596 s
+Size: 512x512x512 | Threads: 4 | Time: 0.37027 s
+Size: 512x512x512 | Threads: 8 | Time: 0.30128 s
+Size: 512x512x512 | Threads: 16 | Time: 0.393264 s
+-------------------------------------
+--> 调度策略: dynamic
+Size: 512x512x512 | Threads: 1 | Time: 0.338963 s
+Size: 512x512x512 | Threads: 2 | Time: 0.278924 s
+Size: 512x512x512 | Threads: 4 | Time: 0.35201 s
+Size: 512x512x512 | Threads: 8 | Time: 0.299466 s
+Size: 512x512x512 | Threads: 16 | Time: 0.394994 s
+-------------------------------------
+--> 调度策略: auto
+Size: 512x512x512 | Threads: 1 | Time: 0.368013 s
+Size: 512x512x512 | Threads: 2 | Time: 0.307955 s
+Size: 512x512x512 | Threads: 4 | Time: 0.294281 s
+Size: 512x512x512 | Threads: 8 | Time: 0.291256 s
+Size: 512x512x512 | Threads: 16 | Time: 0.473656 s
+-------------------------------------
+=====================================
+测试矩阵规模: 1024 x 1024 x 1024
+--> 调度策略: static
+Size: 1024x1024x1024 | Threads: 1 | Time: 3.57006 s
+Size: 1024x1024x1024 | Threads: 2 | Time: 2.89543 s
+Size: 1024x1024x1024 | Threads: 4 | Time: 2.8935 s
+Size: 1024x1024x1024 | Threads: 8 | Time: 5.31038 s
+Size: 1024x1024x1024 | Threads: 16 | Time: 3.46406 s
+-------------------------------------
+--> 调度策略: dynamic
+Size: 1024x1024x1024 | Threads: 1 | Time: 3.43341 s
+Size: 1024x1024x1024 | Threads: 2 | Time: 3.08397 s
+Size: 1024x1024x1024 | Threads: 4 | Time: 2.81902 s
+Size: 1024x1024x1024 | Threads: 8 | Time: 2.90684 s
+Size: 1024x1024x1024 | Threads: 16 | Time: 3.02249 s
+-------------------------------------
+--> 调度策略: auto
+Size: 1024x1024x1024 | Threads: 1 | Time: 3.45053 s
+Size: 1024x1024x1024 | Threads: 2 | Time: 2.94017 s
+Size: 1024x1024x1024 | Threads: 4 | Time: 3.14364 s
+Size: 1024x1024x1024 | Threads: 8 | Time: 3.04733 s
+Size: 1024x1024x1024 | Threads: 16 | Time: 3.42241 s
+-------------------------------------
+=====================================
+测试矩阵规模: 2048 x 2048 x 2048
+--> 调度策略: static
+Size: 2048x2048x2048 | Threads: 1 | Time: 78.745 s
+Size: 2048x2048x2048 | Threads: 2 | Time: 83.4063 s
+Size: 2048x2048x2048 | Threads: 4 | Time: 79.8158 s
+Size: 2048x2048x2048 | Threads: 8 | Time: 91.4588 s
+Size: 2048x2048x2048 | Threads: 16 | Time: 99.5654 s
+-------------------------------------
+--> 调度策略: dynamic
+Size: 2048x2048x2048 | Threads: 1 | Time: 88.7424 s
+Size: 2048x2048x2048 | Threads: 2 | Time: 89.726 s
+Size: 2048x2048x2048 | Threads: 4 | Time: 88.8473 s
+Size: 2048x2048x2048 | Threads: 8 | Time: 94.3675 s
+Size: 2048x2048x2048 | Threads: 16 | Time: 93.8434 s
+-------------------------------------
+--> 调度策略: auto
+Size: 2048x2048x2048 | Threads: 1 | Time: 78.3317 s
+Size: 2048x2048x2048 | Threads: 2 | Time: 69.6244 s
+Size: 2048x2048x2048 | Threads: 4 | Time: 67.3877 s
+Size: 2048x2048x2048 | Threads: 8 | Time: 69.8482 s
+Size: 2048x2048x2048 | Threads: 16 | Time: 67.3741 s
+-------------------------------------
+测试完成！
