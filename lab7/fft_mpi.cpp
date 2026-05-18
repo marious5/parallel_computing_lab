@@ -19,8 +19,6 @@ void timestamp ( );
 //****************************************************************************80
 
 int main ( int argc, char *argv[] )
-
-//****************************************************************************80
 {
   int rank, numprocs;
   
@@ -138,7 +136,7 @@ int main ( int argc, char *argv[] )
       else
       {
         MPI_Barrier(MPI_COMM_WORLD);
-        ctime1 = MPI_Wtime(); // 使用 MPI 时间函数
+        ctime1 = MPI_Wtime(); 
         for ( it = 0; it < nits; it++ )
         {
           sgn = + 1.0;
@@ -261,4 +259,144 @@ void cffti ( int n, double w[] )
   }
   return;
 }
-//****************
+//****************************************************************************80
+
+double ggl ( double *seed )
+{
+  double d2 = 0.2147483647e10;
+  double t;
+  double value;
+
+  t = *seed;
+  t = fmod ( 16807.0 * t, d2 );
+  *seed = t;
+  value = ( t - 1.0 ) / ( d2 - 1.0 );
+
+  return value;
+}
+//****************************************************************************80
+
+void step ( int n, int mj, double a[], double b[], double c[],
+  double d[], double w[], double sgn, int rank, int numprocs )
+{
+  double ambr;
+  double ambu;
+  int mj2;
+  double wjw[2];
+
+  mj2 = 2 * mj;
+  int lj = n / mj2;
+
+  // 1. 根据进程数划分外层循环任务
+  int local_lj = lj / numprocs;
+  int remainder = lj % numprocs;
+  int start_j = rank * local_lj + (rank < remainder ? rank : remainder);
+  int end_j = start_j + local_lj + (rank < remainder ? 1 : 0);
+  int actual_lj = end_j - start_j;
+
+  // 2. 本地计算分配到的块
+  for ( int j = start_j; j < end_j; j++ )
+  {
+    int jw = j * mj;
+    int ja  = jw;
+    int jb  = ja;
+    int jc  = j * mj2;
+    int jd  = jc;
+
+    wjw[0] = w[jw*2+0]; 
+    wjw[1] = w[jw*2+1];
+
+    if ( sgn < 0.0 ) 
+    {
+      wjw[1] = - wjw[1];
+    }
+
+    for ( int k = 0; k < mj; k++ )
+    {
+      c[(jc+k)*2+0] = a[(ja+k)*2+0] + b[(jb+k)*2+0];
+      c[(jc+k)*2+1] = a[(ja+k)*2+1] + b[(jb+k)*2+1];
+
+      ambr = a[(ja+k)*2+0] - b[(jb+k)*2+0];
+      ambu = a[(ja+k)*2+1] - b[(jb+k)*2+1];
+
+      d[(jd+k)*2+0] = wjw[0] * ambr - wjw[1] * ambu;
+      d[(jd+k)*2+1] = wjw[1] * ambr + wjw[0] * ambu;
+    }
+  }
+
+  // 3. 准备 MPI_Pack
+  int pack_size_per_double;
+  MPI_Pack_size(1, MPI_DOUBLE, MPI_COMM_WORLD, &pack_size_per_double);
+  
+  // 计算当前进程需要打包的最大空间：实际处理的循环次数 * 每次内层循环产生的双精度浮点数数量 (mj*4) 
+  int local_pack_size = actual_lj * mj * 4 * pack_size_per_double;
+  
+  // 如果分配到的任务为 0，依然需要分配极小空间以防越界
+  char* pack_buffer = new char[local_pack_size > 0 ? local_pack_size : 1];
+  int position = 0;
+
+  for ( int j = start_j; j < end_j; j++ ) {
+      int jc = j * mj2;
+      int jd = jc; 
+      // 打包 c 数组的更新块
+      MPI_Pack(&c[jc*2], mj*2, MPI_DOUBLE, pack_buffer, local_pack_size, &position, MPI_COMM_WORLD);
+      // 打包 d 数组的更新块
+      MPI_Pack(&d[jd*2], mj*2, MPI_DOUBLE, pack_buffer, local_pack_size, &position, MPI_COMM_WORLD); 
+  }
+
+  // 4. 同步各进程打包后的字节数
+  int* recvcounts = new int[numprocs];
+  int* displs = new int[numprocs];
+  MPI_Allgather(&position, 1, MPI_INT, recvcounts, 1, MPI_INT, MPI_COMM_WORLD);
+  
+  int total_recv_size = 0;
+  for ( int i = 0; i < numprocs; i++ ) {
+      displs[i] = total_recv_size;
+      total_recv_size += recvcounts[i];
+  }
+  
+  char* recv_buffer = new char[total_recv_size > 0 ? total_recv_size : 1];
+  
+  // 5. 将所有进程的 packed 数据收集到所有进程的 recv_buffer 中
+  MPI_Allgatherv(pack_buffer, position, MPI_PACKED, recv_buffer, recvcounts, displs, MPI_PACKED, MPI_COMM_WORLD);
+
+  // 6. MPI_Unpack: 遍历所有进程的任务范围，按照同样的顺序解包，将数据写回 c 和 d
+  for ( int r = 0; r < numprocs; r++ ) {
+      int r_start_j = r * local_lj + (r < remainder ? r : remainder);
+      int r_end_j = r_start_j + local_lj + (r < remainder ? 1 : 0);
+      int unpack_pos = displs[r];
+      
+      for ( int j = r_start_j; j < r_end_j; j++ ) {
+          int jc = j * mj2;
+          int jd = jc;
+          MPI_Unpack(recv_buffer, total_recv_size, &unpack_pos, &c[jc*2], mj*2, MPI_DOUBLE, MPI_COMM_WORLD);
+          MPI_Unpack(recv_buffer, total_recv_size, &unpack_pos, &d[jd*2], mj*2, MPI_DOUBLE, MPI_COMM_WORLD);
+      }
+  }
+
+  // 清理内存
+  delete[] pack_buffer;
+  delete[] recv_buffer;
+  delete[] recvcounts;
+  delete[] displs;
+}
+//****************************************************************************80
+
+void timestamp ( )
+{
+# define TIME_SIZE 40
+
+  static char time_buffer[TIME_SIZE];
+  const struct tm *tm;
+  time_t now;
+
+  now = time ( NULL );
+  tm = localtime ( &now );
+
+  strftime ( time_buffer, TIME_SIZE, "%d %B %Y %I:%M:%S %p", tm );
+
+  cout << time_buffer << "\n";
+
+  return;
+# undef TIME_SIZE
+}

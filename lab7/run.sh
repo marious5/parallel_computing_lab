@@ -20,4 +20,4 @@ valgrind --tool=massif --stacks=yes mpirun -np 4 ./fft_mpi
 # 找到生成的 massif.out 文件并通过 ms_print 打印
 MASSIF_FILE=$(ls massif.out.* | head -n 1)
 ms_print $MASSIF_FILE > memory_analysis.txt
-echo "Memory profile saved to memory_analysis.txt"
+echo "Memory profile saved to memory_analysis.txt"git
