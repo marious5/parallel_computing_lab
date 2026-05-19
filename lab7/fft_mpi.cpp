@@ -40,7 +40,7 @@ int main ( int argc, char *argv[] )
   int ln2;
   double mflops;
   int n;
-  int nits = 10000;
+  int nits = 100;
   static double seed;
   double sgn;
   double *w;

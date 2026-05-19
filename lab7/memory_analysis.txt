@@ -1,0 +1,471 @@
+--------------------------------------------------------------------------------
+Command:            mpirun -np 4 ./fft_mpi
+Massif arguments:   --stacks=yes
+ms_print arguments: massif.out.1195
+--------------------------------------------------------------------------------
+
+
+    KB
+550.9^                                                                     :  
+     |                             @@@@@@@@@@::::::::::::::::::::#########::  
+     |                             @         :         :         #        ::  
+     |                             @         :         :         #        ::  
+     |                             @         :         :         #        ::  
+     |                             @         :         :         #        ::  
+     |                             @         :         :         #        ::  
+     |                             @         :         :         #        ::  
+     |                             @         :         :         #        ::  
+     |                             @         :         :         #        ::  
+     |                             @         :         :         #        ::  
+     |                             @         :         :         #        ::  
+     |                             @         :         :         #        ::  
+     |                             @         :         :         #        ::  
+     |                             @         :         :         #        ::  
+     |                             @         :         :         #        :: :
+     |                             @         :         :         #        :: :
+     |                             @         :         :         #        :: :
+     |                            @@         :         :         #        :: :
+     |              @::    ::::@::@@         :         :         #        ::::
+   0 +----------------------------------------------------------------------->Mi
+     0                                                                   1.872
+
+Number of snapshots: 66
+ Detailed snapshots: [1, 14, 24, 33, 37, 43, 48, 51, 55 (peak), 65]
+
+--------------------------------------------------------------------------------
+  n        time(i)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
+--------------------------------------------------------------------------------
+  0              0                0                0             0            0
+  1         16,883              400                0             0          400
+00.00% (0B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+
+--------------------------------------------------------------------------------
+  n        time(i)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
+--------------------------------------------------------------------------------
+  2         29,731            2,736                0             0        2,736
+  3         48,859            3,416                0             0        3,416
+  4         68,361            1,152                0             0        1,152
+  5         84,096              888                0             0          888
+  6        100,879            1,096                0             0        1,096
+  7        121,853            1,568                0             0        1,568
+  8        136,074            1,576                0             0        1,576
+  9        149,904            1,576                0             0        1,576
+ 10        163,640            1,600                0             0        1,600
+ 11        186,648            1,576                0             0        1,576
+ 12        205,457            1,576                0             0        1,576
+ 13        216,520            1,096                0             0        1,096
+ 14        231,029            1,096                0             0        1,096
+00.00% (0B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+
+--------------------------------------------------------------------------------
+  n        time(i)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
+--------------------------------------------------------------------------------
+ 15        240,129            1,416                0             0        1,416
+ 16        258,011            1,576                0             0        1,576
+ 17        269,621            1,600                0             0        1,600
+ 18        284,100            1,568                0             0        1,568
+ 19        303,004            1,576                0             0        1,576
+ 20        316,186            1,592                0             0        1,592
+ 21        337,980            1,376                0             0        1,376
+ 22        358,049            1,680                0             0        1,680
+ 23        371,055            3,568            1,879            33        1,656
+ 24        385,813           39,832           37,872            80        1,880
+95.08% (37,872B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+->82.39% (32,816B) 0x536EA14: opendir (opendir.c:216)
+| ->82.39% (32,816B) 0x5683181: ??? (in /usr/lib/x86_64-linux-gnu/libnuma.so.1.0.0)
+|   ->82.39% (32,816B) 0x401073A: _dl_init (dl-init.c:58)
+|     ->82.39% (32,816B) 0x40010C8: ??? (in /lib/x86_64-linux-gnu/ld-2.27.so)
+|       ->82.39% (32,816B) 0x2: ???
+|         ->82.39% (32,816B) 0x1FFF0004F9: ???
+|           ->82.39% (32,816B) 0x1FFF000500: ???
+|             ->82.39% (32,816B) 0x1FFF000504: ???
+|               ->82.39% (32,816B) 0x1FFF000506: ???
+|                 
+->10.28% (4,096B) 0x530D1FA: _IO_file_doallocate (filedoalloc.c:101)
+| ->10.28% (4,096B) 0x531D3E7: _IO_doallocbuf (genops.c:365)
+|   ->10.28% (4,096B) 0x531C2C2: _IO_file_underflow@@GLIBC_2.2.5 (fileops.c:495)
+|     ->10.28% (4,096B) 0x530EDB6: getdelim (iogetdelim.c:73)
+|       ->10.28% (4,096B) 0x5683F09: numa_node_size64 (in /usr/lib/x86_64-linux-gnu/libnuma.so.1.0.0)
+|       | ->10.28% (4,096B) 0x56831F3: ??? (in /usr/lib/x86_64-linux-gnu/libnuma.so.1.0.0)
+|       |   ->10.28% (4,096B) 0x401073A: _dl_init (dl-init.c:58)
+|       |     ->10.28% (4,096B) 0x40010C8: ??? (in /lib/x86_64-linux-gnu/ld-2.27.so)
+|       |       ->10.28% (4,096B) 0x2: ???
+|       |         ->10.28% (4,096B) 0x1FFF0004F9: ???
+|       |           ->10.28% (4,096B) 0x1FFF000500: ???
+|       |             ->10.28% (4,096B) 0x1FFF000504: ???
+|       |               ->10.28% (4,096B) 0x1FFF000506: ???
+|       |                 
+|       ->00.00% (0B) in 1+ places, all below ms_print's threshold (01.00%)
+|       
+->01.39% (552B) 0x530DEB8: fopen@@GLIBC_2.2.5 (iofopen.c:65)
+| ->01.39% (552B) 0x5683EC1: numa_node_size64 (in /usr/lib/x86_64-linux-gnu/libnuma.so.1.0.0)
+| | ->01.39% (552B) 0x56831F3: ??? (in /usr/lib/x86_64-linux-gnu/libnuma.so.1.0.0)
+| |   ->01.39% (552B) 0x401073A: _dl_init (dl-init.c:58)
+| |     ->01.39% (552B) 0x40010C8: ??? (in /lib/x86_64-linux-gnu/ld-2.27.so)
+| |       ->01.39% (552B) 0x2: ???
+| |         ->01.39% (552B) 0x1FFF0004F9: ???
+| |           ->01.39% (552B) 0x1FFF000500: ???
+| |             ->01.39% (552B) 0x1FFF000504: ???
+| |               ->01.39% (552B) 0x1FFF000506: ???
+| |                 
+| ->00.00% (0B) in 1+ places, all below ms_print's threshold (01.00%)
+| 
+->01.02% (408B) in 4 places, all below massif's threshold (1.00%)
+  
+--------------------------------------------------------------------------------
+  n        time(i)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
+--------------------------------------------------------------------------------
+ 25        396,010           38,504           37,872            80          552
+ 26        409,659           38,408           37,872            80          456
+ 27        427,457           38,504           37,872            80          552
+ 28        438,998           33,552           33,104            40          408
+ 29        455,072            2,880            2,368           152          360
+ 30        478,499            3,128            2,551           145          432
+ 31        491,402           19,624            8,782           162       10,680
+ 32        511,846            9,752            8,902           282          568
+ 33        532,430           11,736            9,820         1,132          784
+83.67% (9,820B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+->68.58% (8,048B) 0x12AB4C: ??? (in /usr/bin/mpiexec.hydra)
+| ->68.58% (8,048B) 0x110C8A: ??? (in /usr/bin/mpiexec.hydra)
+|   ->68.58% (8,048B) 0x112864: ??? (in /usr/bin/mpiexec.hydra)
+|     ->68.58% (8,048B) 0x12B893: ??? (in /usr/bin/mpiexec.hydra)
+|       ->68.58% (8,048B) 0x111038: ??? (in /usr/bin/mpiexec.hydra)
+|         ->68.58% (8,048B) 0x113F60: ??? (in /usr/bin/mpiexec.hydra)
+|           ->68.58% (8,048B) 0x10DB19: ??? (in /usr/bin/mpiexec.hydra)
+|             ->68.58% (8,048B) 0x52B0B95: (below main) (libc-start.c:310)
+|               
+->05.22% (613B) 0x532CA28: strdup (strdup.c:42)
+| ->02.22% (260B) 0x12D411: ??? (in /usr/bin/mpiexec.hydra)
+| | ->02.22% (260B) 0x12D5B3: ??? (in /usr/bin/mpiexec.hydra)
+| |   ->02.20% (258B) 0x12D8EC: ??? (in /usr/bin/mpiexec.hydra)
+| |   | ->02.20% (258B) 0x12DAFD: ??? (in /usr/bin/mpiexec.hydra)
+| |   |   ->02.20% (258B) 0x10E272: ??? (in /usr/bin/mpiexec.hydra)
+| |   |     ->02.20% (258B) 0x52B0B95: (below main) (libc-start.c:310)
+| |   |       
+| |   ->00.02% (2B) in 1+ places, all below ms_print's threshold (01.00%)
+| |   
+| ->01.94% (228B) 0x12D3FF: ??? (in /usr/bin/mpiexec.hydra)
+| | ->01.94% (228B) 0x12D5B3: ??? (in /usr/bin/mpiexec.hydra)
+| |   ->01.66% (195B) 0x12D8EC: ??? (in /usr/bin/mpiexec.hydra)
+| |   | ->01.66% (195B) 0x12DAFD: ??? (in /usr/bin/mpiexec.hydra)
+| |   |   ->01.66% (195B) 0x10E272: ??? (in /usr/bin/mpiexec.hydra)
+| |   |     ->01.66% (195B) 0x52B0B95: (below main) (libc-start.c:310)
+| |   |       
+| |   ->00.28% (33B) in 1+ places, all below ms_print's threshold (01.00%)
+| |   
+| ->01.07% (125B) in 15 places, all below massif's threshold (1.00%)
+|   
+->04.77% (560B) 0x5683A51: numa_bitmask_alloc (in /usr/lib/x86_64-linux-gnu/libnuma.so.1.0.0)
+| ->01.09% (128B) 0x568315F: ??? (in /usr/lib/x86_64-linux-gnu/libnuma.so.1.0.0)
+| | ->01.09% (128B) 0x401073A: _dl_init (dl-init.c:58)
+| |   ->01.09% (128B) 0x40010C8: ??? (in /lib/x86_64-linux-gnu/ld-2.27.so)
+| |     ->01.09% (128B) 0x2: ???
+| |       ->01.09% (128B) 0x1FFF0004F9: ???
+| |         ->01.09% (128B) 0x1FFF000500: ???
+| |           ->01.09% (128B) 0x1FFF000504: ???
+| |             ->01.09% (128B) 0x1FFF000506: ???
+| |               
+| ->01.09% (128B) 0x568316B: ??? (in /usr/lib/x86_64-linux-gnu/libnuma.so.1.0.0)
+| | ->01.09% (128B) 0x401073A: _dl_init (dl-init.c:58)
+| |   ->01.09% (128B) 0x40010C8: ??? (in /lib/x86_64-linux-gnu/ld-2.27.so)
+| |     ->01.09% (128B) 0x2: ???
+| |       ->01.09% (128B) 0x1FFF0004F9: ???
+| |         ->01.09% (128B) 0x1FFF000500: ???
+| |           ->01.09% (128B) 0x1FFF000504: ???
+| |             ->01.09% (128B) 0x1FFF000506: ???
+| |               
+| ->01.09% (128B) 0x56832C8: ??? (in /usr/lib/x86_64-linux-gnu/libnuma.so.1.0.0)
+| | ->01.09% (128B) 0x401073A: _dl_init (dl-init.c:58)
+| |   ->01.09% (128B) 0x40010C8: ??? (in /lib/x86_64-linux-gnu/ld-2.27.so)
+| |     ->01.09% (128B) 0x2: ???
+| |       ->01.09% (128B) 0x1FFF0004F9: ???
+| |         ->01.09% (128B) 0x1FFF000500: ???
+| |           ->01.09% (128B) 0x1FFF000504: ???
+| |             ->01.09% (128B) 0x1FFF000506: ???
+| |               
+| ->01.09% (128B) 0x56832E8: ??? (in /usr/lib/x86_64-linux-gnu/libnuma.so.1.0.0)
+| | ->01.09% (128B) 0x401073A: _dl_init (dl-init.c:58)
+| |   ->01.09% (128B) 0x40010C8: ??? (in /lib/x86_64-linux-gnu/ld-2.27.so)
+| |     ->01.09% (128B) 0x2: ???
+| |       ->01.09% (128B) 0x1FFF0004F9: ???
+| |         ->01.09% (128B) 0x1FFF000500: ???
+| |           ->01.09% (128B) 0x1FFF000504: ???
+| |             ->01.09% (128B) 0x1FFF000506: ???
+| |               
+| ->00.41% (48B) in 1+ places, all below ms_print's threshold (01.00%)
+| 
+->03.48% (408B) 0x12D3EB: ??? (in /usr/bin/mpiexec.hydra)
+| ->03.48% (408B) 0x12D5B3: ??? (in /usr/bin/mpiexec.hydra)
+|   ->03.27% (384B) 0x12D8EC: ??? (in /usr/bin/mpiexec.hydra)
+|   | ->03.27% (384B) 0x12DAFD: ??? (in /usr/bin/mpiexec.hydra)
+|   |   ->03.27% (384B) 0x10E272: ??? (in /usr/bin/mpiexec.hydra)
+|   |     ->03.27% (384B) 0x52B0B95: (below main) (libc-start.c:310)
+|   |       
+|   ->00.20% (24B) in 1+ places, all below ms_print's threshold (01.00%)
+|   
+->01.63% (191B) in 11 places, all below massif's threshold (1.00%)
+  
+--------------------------------------------------------------------------------
+  n        time(i)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
+--------------------------------------------------------------------------------
+ 34        545,512           12,616           10,282         1,550          784
+ 35        559,828           14,688           12,108         1,892          688
+ 36        572,912           15,408           12,494         2,210          704
+ 37        584,547           26,936           21,357         2,523        3,056
+79.29% (21,357B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+->59.76% (16,096B) 0x12AB4C: ??? (in /usr/bin/mpiexec.hydra)
+| ->29.88% (8,048B) 0x110C8A: ??? (in /usr/bin/mpiexec.hydra)
+| | ->29.88% (8,048B) 0x112864: ??? (in /usr/bin/mpiexec.hydra)
+| |   ->29.88% (8,048B) 0x12B893: ??? (in /usr/bin/mpiexec.hydra)
+| |     ->29.88% (8,048B) 0x111038: ??? (in /usr/bin/mpiexec.hydra)
+| |       ->29.88% (8,048B) 0x113F60: ??? (in /usr/bin/mpiexec.hydra)
+| |         ->29.88% (8,048B) 0x10DB19: ??? (in /usr/bin/mpiexec.hydra)
+| |           ->29.88% (8,048B) 0x52B0B95: (below main) (libc-start.c:310)
+| |             
+| ->29.88% (8,048B) 0x12ADF7: ??? (in /usr/bin/mpiexec.hydra)
+|   ->29.88% (8,048B) 0x12B367: ??? (in /usr/bin/mpiexec.hydra)
+|     ->29.88% (8,048B) 0x10E342: ??? (in /usr/bin/mpiexec.hydra)
+|       ->29.88% (8,048B) 0x52B0B95: (below main) (libc-start.c:310)
+|         
+->11.04% (2,973B) 0x532CA28: strdup (strdup.c:42)
+| ->08.39% (2,260B) 0x12D411: ??? (in /usr/bin/mpiexec.hydra)
+| | ->08.39% (2,260B) 0x12D5B3: ??? (in /usr/bin/mpiexec.hydra)
+| |   ->08.38% (2,258B) 0x12D8EC: ??? (in /usr/bin/mpiexec.hydra)
+| |   | ->08.38% (2,258B) 0x12DAFD: ??? (in /usr/bin/mpiexec.hydra)
+| |   |   ->08.38% (2,258B) 0x10E272: ??? (in /usr/bin/mpiexec.hydra)
+| |   |     ->08.38% (2,258B) 0x52B0B95: (below main) (libc-start.c:310)
+| |   |       
+| |   ->00.01% (2B) in 1+ places, all below ms_print's threshold (01.00%)
+| |   
+| ->01.96% (527B) 0x12D3FF: ??? (in /usr/bin/mpiexec.hydra)
+| | ->01.96% (527B) 0x12D5B3: ??? (in /usr/bin/mpiexec.hydra)
+| |   ->01.83% (494B) 0x12D8EC: ??? (in /usr/bin/mpiexec.hydra)
+| |   | ->01.83% (494B) 0x12DAFD: ??? (in /usr/bin/mpiexec.hydra)
+| |   |   ->01.83% (494B) 0x10E272: ??? (in /usr/bin/mpiexec.hydra)
+| |   |     ->01.83% (494B) 0x52B0B95: (below main) (libc-start.c:310)
+| |   |       
+| |   ->00.12% (33B) in 1+ places, all below ms_print's threshold (01.00%)
+| |   
+| ->00.69% (186B) in 1+ places, all below ms_print's threshold (01.00%)
+| 
+->03.56% (960B) 0x12D3EB: ??? (in /usr/bin/mpiexec.hydra)
+| ->03.56% (960B) 0x12D5B3: ??? (in /usr/bin/mpiexec.hydra)
+|   ->03.47% (936B) 0x12D8EC: ??? (in /usr/bin/mpiexec.hydra)
+|   | ->03.47% (936B) 0x12DAFD: ??? (in /usr/bin/mpiexec.hydra)
+|   |   ->03.47% (936B) 0x10E272: ??? (in /usr/bin/mpiexec.hydra)
+|   |     ->03.47% (936B) 0x52B0B95: (below main) (libc-start.c:310)
+|   |       
+|   ->00.09% (24B) in 1+ places, all below ms_print's threshold (01.00%)
+|   
+->02.85% (768B) in 19 places, all below massif's threshold (1.00%)
+| 
+->02.08% (560B) 0x5683A51: numa_bitmask_alloc (in /usr/lib/x86_64-linux-gnu/libnuma.so.1.0.0)
+  ->02.08% (560B) in 8 places, all below massif's threshold (1.00%)
+    
+--------------------------------------------------------------------------------
+  n        time(i)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
+--------------------------------------------------------------------------------
+ 38        597,787           42,080           37,547         3,037        1,496
+ 39        620,183           50,824           37,862         3,362        9,600
+ 40        631,808           50,192           37,915         3,357        8,920
+ 41        649,203           52,640           38,147         3,493       11,000
+ 42        672,454           52,888           38,329         3,607       10,952
+ 43        686,449           53,248           38,578         3,646       11,024
+72.45% (38,578B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+->30.23% (16,096B) 0x12AB4C: ??? (in /usr/bin/mpiexec.hydra)
+| ->15.11% (8,048B) 0x110C8A: ??? (in /usr/bin/mpiexec.hydra)
+| | ->15.11% (8,048B) 0x112864: ??? (in /usr/bin/mpiexec.hydra)
+| |   ->15.11% (8,048B) 0x12B893: ??? (in /usr/bin/mpiexec.hydra)
+| |     ->15.11% (8,048B) 0x111038: ??? (in /usr/bin/mpiexec.hydra)
+| |       ->15.11% (8,048B) 0x113F60: ??? (in /usr/bin/mpiexec.hydra)
+| |         ->15.11% (8,048B) 0x10DB19: ??? (in /usr/bin/mpiexec.hydra)
+| |           ->15.11% (8,048B) 0x52B0B95: (below main) (libc-start.c:310)
+| |             
+| ->15.11% (8,048B) 0x12ADF7: ??? (in /usr/bin/mpiexec.hydra)
+|   ->15.11% (8,048B) 0x12B367: ??? (in /usr/bin/mpiexec.hydra)
+|     ->15.11% (8,048B) 0x10E342: ??? (in /usr/bin/mpiexec.hydra)
+|       ->15.11% (8,048B) 0x52B0B95: (below main) (libc-start.c:310)
+|         
+->15.02% (8,000B) 0x11A49C: ??? (in /usr/bin/mpiexec.hydra)
+| ->15.02% (8,000B) 0x115712: ??? (in /usr/bin/mpiexec.hydra)
+|   ->15.02% (8,000B) 0x10E4AA: ??? (in /usr/bin/mpiexec.hydra)
+|     ->15.02% (8,000B) 0x52B0B95: (below main) (libc-start.c:310)
+|       
+->15.02% (8,000B) 0x11BAE5: ??? (in /usr/bin/mpiexec.hydra)
+| ->15.02% (8,000B) 0x1158F3: ??? (in /usr/bin/mpiexec.hydra)
+|   ->15.02% (8,000B) 0x10E4AA: ??? (in /usr/bin/mpiexec.hydra)
+|     ->15.02% (8,000B) 0x52B0B95: (below main) (libc-start.c:310)
+|       
+->06.44% (3,430B) 0x532CA28: strdup (strdup.c:42)
+| ->04.24% (2,260B) 0x12D411: ??? (in /usr/bin/mpiexec.hydra)
+| | ->04.24% (2,260B) 0x12D5B3: ??? (in /usr/bin/mpiexec.hydra)
+| |   ->04.24% (2,258B) 0x12D8EC: ??? (in /usr/bin/mpiexec.hydra)
+| |   | ->04.24% (2,258B) 0x12DAFD: ??? (in /usr/bin/mpiexec.hydra)
+| |   |   ->04.24% (2,258B) 0x10E272: ??? (in /usr/bin/mpiexec.hydra)
+| |   |     ->04.24% (2,258B) 0x52B0B95: (below main) (libc-start.c:310)
+| |   |       
+| |   ->00.00% (2B) in 1+ places, all below ms_print's threshold (01.00%)
+| |   
+| ->02.20% (1,170B) in 66 places, all below massif's threshold (1.00%)
+|   
+->01.80% (960B) 0x12D3EB: ??? (in /usr/bin/mpiexec.hydra)
+| ->01.80% (960B) 0x12D5B3: ??? (in /usr/bin/mpiexec.hydra)
+|   ->01.76% (936B) 0x12D8EC: ??? (in /usr/bin/mpiexec.hydra)
+|   | ->01.76% (936B) 0x12DAFD: ??? (in /usr/bin/mpiexec.hydra)
+|   |   ->01.76% (936B) 0x10E272: ??? (in /usr/bin/mpiexec.hydra)
+|   |     ->01.76% (936B) 0x52B0B95: (below main) (libc-start.c:310)
+|   |       
+|   ->00.05% (24B) in 1+ places, all below ms_print's threshold (01.00%)
+|   
+->01.46% (778B) in 25 places, all below massif's threshold (1.00%)
+| 
+->01.42% (754B) 0x130CBB: ??? (in /usr/bin/mpiexec.hydra)
+| ->01.30% (692B) 0x12D2CD: ??? (in /usr/bin/mpiexec.hydra)
+| | ->01.30% (692B) 0x11C1CF: ??? (in /usr/bin/mpiexec.hydra)
+| |   ->01.30% (692B) 0x1158F3: ??? (in /usr/bin/mpiexec.hydra)
+| |     ->01.30% (692B) 0x10E4AA: ??? (in /usr/bin/mpiexec.hydra)
+| |       ->01.30% (692B) 0x52B0B95: (below main) (libc-start.c:310)
+| |         
+| ->00.12% (62B) in 1+ places, all below ms_print's threshold (01.00%)
+| 
+->01.05% (560B) 0x5683A51: numa_bitmask_alloc (in /usr/lib/x86_64-linux-gnu/libnuma.so.1.0.0)
+  ->01.05% (560B) in 8 places, all below massif's threshold (1.00%)
+    
+--------------------------------------------------------------------------------
+  n        time(i)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
+--------------------------------------------------------------------------------
+ 44        704,062           51,232           38,603         3,701        8,928
+ 45        716,575           53,200           40,205         3,811        9,184
+ 46        739,833           55,360           40,492         3,924       10,944
+ 47        757,298           53,744           40,701         4,099        8,944
+ 48        778,125           81,472           33,554         4,278       43,640
+41.18% (33,554B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+->19.76% (16,096B) 0x12AB4C: ??? (in /usr/bin/mpiexec.hydra)
+| ->09.88% (8,048B) 0x110C8A: ??? (in /usr/bin/mpiexec.hydra)
+| | ->09.88% (8,048B) 0x112864: ??? (in /usr/bin/mpiexec.hydra)
+| |   ->09.88% (8,048B) 0x12B893: ??? (in /usr/bin/mpiexec.hydra)
+| |     ->09.88% (8,048B) 0x111038: ??? (in /usr/bin/mpiexec.hydra)
+| |       ->09.88% (8,048B) 0x113F60: ??? (in /usr/bin/mpiexec.hydra)
+| |         ->09.88% (8,048B) 0x10DB19: ??? (in /usr/bin/mpiexec.hydra)
+| |           ->09.88% (8,048B) 0x52B0B95: (below main) (libc-start.c:310)
+| |             
+| ->09.88% (8,048B) 0x12ADF7: ??? (in /usr/bin/mpiexec.hydra)
+|   ->09.88% (8,048B) 0x12B367: ??? (in /usr/bin/mpiexec.hydra)
+|     ->09.88% (8,048B) 0x10E342: ??? (in /usr/bin/mpiexec.hydra)
+|       ->09.88% (8,048B) 0x52B0B95: (below main) (libc-start.c:310)
+|         
+->09.82% (8,000B) 0x11A49C: ??? (in /usr/bin/mpiexec.hydra)
+| ->09.82% (8,000B) 0x115712: ??? (in /usr/bin/mpiexec.hydra)
+|   ->09.82% (8,000B) 0x10E4AA: ??? (in /usr/bin/mpiexec.hydra)
+|     ->09.82% (8,000B) 0x52B0B95: (below main) (libc-start.c:310)
+|       
+->07.95% (6,481B) 0x532CA28: strdup (strdup.c:42)
+| ->04.12% (3,355B) 0x1313BE: ??? (in /usr/bin/mpiexec.hydra)
+| | ->04.12% (3,355B) 0x11C53A: ??? (in /usr/bin/mpiexec.hydra)
+| |   ->04.12% (3,355B) 0x1158F3: ??? (in /usr/bin/mpiexec.hydra)
+| |     ->04.12% (3,355B) 0x10E4AA: ??? (in /usr/bin/mpiexec.hydra)
+| |       ->04.12% (3,355B) 0x52B0B95: (below main) (libc-start.c:310)
+| |         
+| ->02.77% (2,260B) 0x12D411: ??? (in /usr/bin/mpiexec.hydra)
+| | ->02.77% (2,260B) 0x12D5B3: ??? (in /usr/bin/mpiexec.hydra)
+| |   ->02.77% (2,258B) 0x12D8EC: ??? (in /usr/bin/mpiexec.hydra)
+| |   | ->02.77% (2,258B) 0x12DAFD: ??? (in /usr/bin/mpiexec.hydra)
+| |   |   ->02.77% (2,258B) 0x10E272: ??? (in /usr/bin/mpiexec.hydra)
+| |   |     ->02.77% (2,258B) 0x52B0B95: (below main) (libc-start.c:310)
+| |   |       
+| |   ->00.00% (2B) in 1+ places, all below ms_print's threshold (01.00%)
+| |   
+| ->01.06% (866B) in 77 places, all below massif's threshold (1.00%)
+|   
+->02.48% (2,017B) in 30 places, all below massif's threshold (1.00%)
+| 
+->01.18% (960B) 0x12D3EB: ??? (in /usr/bin/mpiexec.hydra)
+  ->01.18% (960B) 0x12D5B3: ??? (in /usr/bin/mpiexec.hydra)
+    ->01.15% (936B) 0x12D8EC: ??? (in /usr/bin/mpiexec.hydra)
+    | ->01.15% (936B) 0x12DAFD: ??? (in /usr/bin/mpiexec.hydra)
+    |   ->01.15% (936B) 0x10E272: ??? (in /usr/bin/mpiexec.hydra)
+    |     ->01.15% (936B) 0x52B0B95: (below main) (libc-start.c:310)
+    |       
+    ->00.03% (24B) in 1+ places, all below ms_print's threshold (01.00%)
+    
+--------------------------------------------------------------------------------
+  n        time(i)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
+--------------------------------------------------------------------------------
+ 49        795,625           38,448           33,566         4,202          680
+ 50        804,839           30,560           25,534         4,018        1,008
+ 51        813,209          555,232          550,125         4,131          976
+99.08% (550,125B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+->94.43% (524,288B) 0x117F90: ??? (in /usr/bin/mpiexec.hydra)
+| ->94.43% (524,288B) 0x13792E: ??? (in /usr/bin/mpiexec.hydra)
+|   ->94.43% (524,288B) 0x115D79: ??? (in /usr/bin/mpiexec.hydra)
+|     ->94.43% (524,288B) 0x10EAC0: ??? (in /usr/bin/mpiexec.hydra)
+|       ->94.43% (524,288B) 0x52B0B95: (below main) (libc-start.c:310)
+|         
+->02.90% (16,096B) 0x12AB4C: ??? (in /usr/bin/mpiexec.hydra)
+| ->01.45% (8,048B) 0x110C8A: ??? (in /usr/bin/mpiexec.hydra)
+| | ->01.45% (8,048B) 0x112864: ??? (in /usr/bin/mpiexec.hydra)
+| |   ->01.45% (8,048B) 0x12B893: ??? (in /usr/bin/mpiexec.hydra)
+| |     ->01.45% (8,048B) 0x111038: ??? (in /usr/bin/mpiexec.hydra)
+| |       ->01.45% (8,048B) 0x113F60: ??? (in /usr/bin/mpiexec.hydra)
+| |         ->01.45% (8,048B) 0x10DB19: ??? (in /usr/bin/mpiexec.hydra)
+| |           ->01.45% (8,048B) 0x52B0B95: (below main) (libc-start.c:310)
+| |             
+| ->01.45% (8,048B) 0x12ADF7: ??? (in /usr/bin/mpiexec.hydra)
+|   ->01.45% (8,048B) 0x12B367: ??? (in /usr/bin/mpiexec.hydra)
+|     ->01.45% (8,048B) 0x10E342: ??? (in /usr/bin/mpiexec.hydra)
+|       ->01.45% (8,048B) 0x52B0B95: (below main) (libc-start.c:310)
+|         
+->01.14% (6,338B) 0x532CA28: strdup (strdup.c:42)
+| ->01.14% (6,338B) in 87 places, all below massif's threshold (1.00%)
+|   
+->00.61% (3,403B) in 1+ places, all below ms_print's threshold (01.00%)
+
+--------------------------------------------------------------------------------
+  n        time(i)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
+--------------------------------------------------------------------------------
+ 52      1,075,361          555,160          550,125         4,131          904
+ 53      1,340,980          556,224          551,180         4,140          904
+ 54      1,609,726          556,512          551,465         4,143          904
+ 55      1,614,123          561,680          554,309         4,339        3,032
+98.69% (554,309B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+->93.34% (524,288B) 0x117F90: ??? (in /usr/bin/mpiexec.hydra)
+| ->93.34% (524,288B) 0x13792E: ??? (in /usr/bin/mpiexec.hydra)
+|   ->93.34% (524,288B) 0x115D79: ??? (in /usr/bin/mpiexec.hydra)
+|     ->93.34% (524,288B) 0x10EAC0: ??? (in /usr/bin/mpiexec.hydra)
+|       ->93.34% (524,288B) 0x52B0B95: (below main) (libc-start.c:310)
+|         
+->02.87% (16,096B) 0x12AB4C: ??? (in /usr/bin/mpiexec.hydra)
+| ->01.43% (8,048B) 0x110C8A: ??? (in /usr/bin/mpiexec.hydra)
+| | ->01.43% (8,048B) 0x112864: ??? (in /usr/bin/mpiexec.hydra)
+| |   ->01.43% (8,048B) 0x12B893: ??? (in /usr/bin/mpiexec.hydra)
+| |     ->01.43% (8,048B) 0x111038: ??? (in /usr/bin/mpiexec.hydra)
+| |       ->01.43% (8,048B) 0x113F60: ??? (in /usr/bin/mpiexec.hydra)
+| |         ->01.43% (8,048B) 0x10DB19: ??? (in /usr/bin/mpiexec.hydra)
+| |           ->01.43% (8,048B) 0x52B0B95: (below main) (libc-start.c:310)
+| |             
+| ->01.43% (8,048B) 0x12ADF7: ??? (in /usr/bin/mpiexec.hydra)
+|   ->01.43% (8,048B) 0x12B367: ??? (in /usr/bin/mpiexec.hydra)
+|     ->01.43% (8,048B) 0x10E342: ??? (in /usr/bin/mpiexec.hydra)
+|       ->01.43% (8,048B) 0x52B0B95: (below main) (libc-start.c:310)
+|         
+->01.25% (6,999B) in 41 places, all below massif's threshold (1.00%)
+| 
+->01.23% (6,926B) 0x532CA28: strdup (strdup.c:42)
+  ->01.23% (6,926B) in 98 places, all below massif's threshold (1.00%)
+    
+--------------------------------------------------------------------------------
+  n        time(i)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
+--------------------------------------------------------------------------------
+ 56      1,881,111          560,672          555,564         4,204          904
+ 57      1,890,227          564,072          556,366         4,562        3,144
+ 58      1,899,328           36,200           31,261         4,187          752
+ 59      1,908,430           36,080           31,213         4,179          688
+ 60      1,917,743           36,192           31,261         4,187          744
+ 61      1,926,944           36,192           31,261         4,187          744
+ 62      1,936,044           36,424           31,261         4,187          976
+ 63      1,945,144           36,448           31,277         4,195          976
+ 64      1,954,262          153,040          151,338           982          720
+ 65      1,963,364              448                0             0          448
+00.00% (0B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+->00.00% (0B) in 1+ places, all below ms_print's threshold (01.00%)
+
