@@ -100,19 +100,19 @@ __global__ void im2col_kernel(
 // 主函数
 // ---------------------------------------------------------
 int main() {
-    // 实验参数设置 [cite: 8, 9]
+    // 实验参数设置 
     int N = 1;          // Batch size
-    int in_c = 3;       // Input channels [cite: 8]
-    int out_c = 3;      // Output channels (Filters) [cite: 9]
-    int in_h = 32;      // Image height [cite: 13]
-    int in_w = 32;      // Image width [cite: 13]
-    int k_size = 3;     // Kernel size (3x3) [cite: 8]
-    int stride = 1;     // Stride 1, 2, or 3 [cite: 9]
+    int in_c = 3;       // Input channels 
+    int out_c = 3;      // Output channels (Filters)
+    int in_h = 32;      // Image height
+    int in_w = 32;      // Image width
+    int k_size = 3;     // Kernel size (3x3)
+    int stride = 1;     // Stride 1, 2, or 3
     int pad = 1;        // Padding 
 
-    // 计算输出尺寸 [cite: 16]
-    int out_h = (in_h - k_size + 2 * pad) / stride + 1; [cite: 16]
-    int out_w = (in_w - k_size + 2 * pad) / stride + 1; [cite: 16]
+    // 计算输出尺寸
+    int out_h = (in_h - k_size + 2 * pad) / stride + 1; 
+    int out_w = (in_w - k_size + 2 * pad) / stride + 1; 
 
     size_t size_input = N * in_c * in_h * in_w * sizeof(float);
     size_t size_weight = out_c * in_c * k_size * k_size * sizeof(float);
@@ -144,7 +144,7 @@ int main() {
     std::cout << "----------------\n" << std::endl;
 
     // ==========================================
-    // 1. 测试滑窗法 (Direct Convolution) [cite: 5, 6, 7]
+    // 1. 测试滑窗法 (Direct Convolution) 
     // ==========================================
     dim3 block_dim(16, 16, 1);
     dim3 grid_dim((out_w + block_dim.x - 1) / block_dim.x, 
@@ -159,11 +159,12 @@ int main() {
     std::cout << "[方法 1] 滑窗法执行时间: " << ms << " ms" << std::endl;
 
     // ==========================================
-    // 2. 测试 im2col + cuBLAS [cite: 17, 18, 19]
+    // 2. 测试 im2col + cuBLAS 
     // ==========================================
     float *d_col;
-    int col_rows = in_c * k_size * k_size; // 列向量的高度 [cite: 18]
-    int col_cols = out_h * out_w;          // 窗口数量 [cite: 18]
+    int col_rows = in_c * k_size * k_size; // 列向量的高度 
+    int col_cols = out_h * out_w;          // 窗口数量 
+
     CHECK_CUDA(cudaMalloc(&d_col, col_rows * col_cols * sizeof(float)));
 
     int total_elements = in_c * out_h * out_w;
@@ -175,9 +176,9 @@ int main() {
     float alpha = 1.0f, beta = 0.0f;
 
     cudaEventRecord(start);
-    // 步骤 a: im2col 重排 [cite: 18]
+    // 步骤 a: im2col 重排
     im2col_kernel<<<blocks_per_grid, threads_per_block>>>(d_input, d_col, in_c, in_h, in_w, k_size, stride, pad, out_h, out_w);
-    // 步骤 b: SGEMM 矩阵乘法 W * X [cite: 18]
+    // 步骤 b: SGEMM 矩阵乘法 W * X 
     // cuBLAS 是列优先格式，我们通过调换操作数并转置计算 C^T = B^T * A^T
     CHECK_CUBLAS(cublasSgemm(cublas_handle, CUBLAS_OP_N, CUBLAS_OP_N, 
                              col_cols, out_c, col_rows,
@@ -195,7 +196,7 @@ int main() {
     cublasDestroy(cublas_handle);
 
     // ==========================================
-    // 3. 测试 cuDNN API [cite: 20, 21, 22]
+    // 3. 测试 cuDNN API 
     // ==========================================
     cudnnHandle_t cudnn;
     CHECK_CUDNN(cudnnCreate(&cudnn));
